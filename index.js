@@ -6,7 +6,7 @@ const Port = 5000;
 const server = express();
 server.use(express.json());
 
-const users = [];
+let users = [];
 
 server.post("/api/users", (req, res) => {
   const usersInfo = req.body;
@@ -21,3 +21,7 @@ server.post("/api/users", (req, res) => {
 server.listen(Port, () =>
   console.log(`\n** Server listening on http://localhost:${Port}**\n`)
 );
+
+server.get("/api/users", (req, res) => {
+  res.status(200).json(users);
+});
